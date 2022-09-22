@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shop.xx.mapper.ShopXxMapper">
+	<!-- 商品新規登録 -->
+	<insert id="newProductInfo" >
+		insert into shop_product( id, name, show_flg, del_flg, sort, date_created, date_modified)
+		values(#{id}, #{name}, #{age}, #{showFlg}, #{delFlg}, sort, dateCreated, dateModified);
+	</insert>
+	</mapper>
