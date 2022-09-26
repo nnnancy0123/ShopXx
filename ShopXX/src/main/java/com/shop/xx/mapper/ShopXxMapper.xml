@@ -5,7 +5,13 @@
 <mapper namespace="com.shop.xx.mapper.ShopXxMapper">
 	<!-- 商品新規登録 -->
 	<insert id="newProductInfo" >
-		insert into shop_product( id, name, show_flg, del_flg, sort, date_created, date_modified)
-		values(#{id}, #{name}, #{age}, #{showFlg}, #{delFlg}, sort, dateCreated, dateModified);
+		insert into shop_product(id,name,simple_desc,price,inventory,image,show_flg,del_flg,date_created,date_modified)
+		values(#{id},#{name}, #{simpleDesc},  #{price}, #{inventory}, #{image},#{showFlg}, #{delFlg}, #{dateCreated},#{dateModified});
 	</insert>
+	
+	<!-- ユーザー情報一覧取得 -->
+	<select id ="getProductInfo" resultType="com.shop.xx.bean.ProductInfoBean">
+	   select * from shop_product;
+	</select>
+	
 	</mapper>

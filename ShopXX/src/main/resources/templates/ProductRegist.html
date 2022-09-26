@@ -2,6 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Security-Policy"
+	content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+<script src="components/loader.js"></script>
+<link rel="stylesheet" href="components/loader.css">
+<link rel="stylesheet" href="css/style.css">
+
 <title>ShopXX</title>
 </head>
 <body>
@@ -15,11 +23,10 @@
 			style="font-family: sans-serif; color: black; font-size: 15px;">商品情報入力</span>
 	</div>
 	</br>
-	<form th:action="@{/ProductRegist}" method="post">
+	<form th:action="@{/ProductInfoList}" method="post">
 		<div class="am-form-group">
-			<label>商品番号:</label> <input type="text" name="model"
-				placeholder="商品番号" maxlength="30"
-				data-validation-message="商品番号格式 最大 30 文字"
+			<label>商品番号:</label> <input type="text" name="id" placeholder="商品番号"
+				maxlength="30" data-validation-message="商品番号格式 最大 30 文字"
 				class="am-form-field am-radius" required=""> <span
 				class="am-form-group-label-tips-must"
 				style="font-family: serif; color: red; font-size: 13px;">※必要</span>
@@ -27,7 +34,7 @@
 		<div class="am-form-group">
 
 			<div class="am-input-group am-input-group-sm">
-				商品:<input type="text" name="title" placeholder="商品名" minlength="2"
+				商品:<input type="text" name="name" placeholder="商品名" minlength="2"
 					maxlength="160" data-validation-message="商品名単位形式 2~160 キャラクター"
 					class="am-form-field am-radius" required=""> <span
 					class="am-form-group-label-tips-must"
@@ -44,16 +51,15 @@
 				style="font-family: serif; color: black; font-size: 13px;">选填</span>
 		</div>
 
-		<div class="am-form-group">
-			<label>価格:</label> <input type="text" name="model"
-				placeholder="00000" maxlength="000000"
-				class="am-radius am-field-error am-active" required=""> <span
-				class="am-form-group-label-tips-must"
+		<div class="am-form-group am-form-error">
+			<label>価格:</label> <input type="text" name="price"
+				placeholder="00000" class="am-radius am-field-error am-active"
+				required=""> <span class="am-form-group-label-tips-must"
 				style="font-family: serif; color: red; font-size: 13px;">※必要</span>
 		</div>
 
 		<div class="am-form-group am-form-error">
-			<label>在庫:</label> <input type="text" name="inventory_unit"
+			<label>在庫:</label> <input type="text" name="inventory"
 				placeholder="000000" minlength="1" maxlength="6"
 				data-validation-message="在庫単位形式1~6 キャラクター"
 				class="am-radius am-field-error am-active" required=""> <span
@@ -65,21 +71,22 @@
 			<label class="block">商品写真:</br> <span
 				class="am-form-group-label-tips"
 				style="font-family: sans-serif; color: black; font-size: 13px; opacity: 0.6">
-				選択されていない場合は、アルバムの一番目の写真を選択します;800*800pxをお勧めします</span></label>
+					選択されていない場合は、アルバムの一番目の写真を選択します;800*800pxをお勧めします</span></label>
 			<div class="content-img">
 				<ul class="content-img-list">
 				</ul>
 				<div class="file">
 					<i class="ico-plus"></i><span class="am-form-group-label-tips"
-						style="font-family: sans-serif; color: black; font-size: 13px; opacity: 1">上传图片，支持jpg/png</span><br>
-					<input type="file" style="opacity: 3; color: blue" name="file"
+						style="font-family: sans-serif; color: black; font-size: 13px; opacity: 1">写真をアップロードして，jpg/pngだけできる</span><br>
+					<input type="file" style="opacity: 3; color: blue" name="image"
 						accept="image/*" id="upload">
 				</div>
-			</div>
+				<br>
+		</div>
 		</div>
 		<br>
-		<button type="submit">登録</button>
 
+		<button type="submit">登録</button>
 	</form>
 </body>
 </html>

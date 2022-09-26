@@ -1,27 +1,31 @@
 package com.shop.xx.bean;
-
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import lombok.Data;
-
 /**
  * 商品情報 
  */
 @Data
 public class ProductInfoBean {
-
-	private String id;
+	
+	private int id;
 
 	private String name;
+
+	private String simpleDesc;
+	
+	private int price;
+	
+	private int inventory;
+	
+	private String image;
 
 	private String showFlg;
 
 	private String delFlg;
 
-	private int sort;
+	private LocalDateTime dateCreated;
 
-	private Date dateCreated;
-
-	private Date dateModified;
+	private LocalDateTime dateModified;
 
 }

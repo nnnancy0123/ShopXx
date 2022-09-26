@@ -1,9 +1,11 @@
 package com.shop.xx.controller;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,7 @@ import com.shop.xx.service.ShopXxService;
 public class ProductRegistController {
 	@Autowired
 	ShopXxService shopXxService;
+
 	/*
 	 * 
 	 * @return
@@ -23,32 +26,48 @@ public class ProductRegistController {
 	 */
 	@GetMapping("/ProductRegist")
 	public ModelAndView register() {
-		
+
 		ModelAndView mav = new ModelAndView("ProductRegist");
 		return mav;
 	}
-	
+
 	/**
 	 * 商品新規登録画面を表示
-	 * @param model Model
+	 * @param price 
+	 * @param inventory 
 	 * @return 商品情報一覧画面
 	 */
-	@PostMapping("/userInfoList")
-	public ModelAndView CreatInfo(@RequestParam String id, @RequestParam String name, @RequestParam String showFlg, 
-		@RequestParam String delFlg, @RequestParam int sort, @RequestParam Date dateCreated, @RequestParam Date dateModifiedf) {
-		
+	@PostMapping("/ProductInfoList")
+	public ModelAndView CreatInfo(@RequestParam int id, @RequestParam String name, @RequestParam int price,
+			@RequestParam String image, @RequestParam int inventory,Model model) {
+
 		ProductInfoBean productInfoBean = new ProductInfoBean();
 		productInfoBean.setId(id);
 		productInfoBean.setName(name);
-		productInfoBean.setShowFlg(showFlg);
-		productInfoBean.setDelFlg(delFlg);
-		productInfoBean.setSort(sort);
-		productInfoBean.setDateCreated(dateCreated);
-		productInfoBean.setDateModified(dateModifiedf);
-
-		shopXxService.createProductInfo(productInfoBean);
-		ModelAndView userInfoList = new ModelAndView("ProductInfoList");
-		return null ;
+		productInfoBean.setPrice(price);
+		productInfoBean.setInventory(inventory);
+		productInfoBean.setImage(image);
+		LocalDateTime localDateTime = LocalDateTime.now();
+		productInfoBean.setDateCreated(localDateTime);
+		productInfoBean.setDateModified(localDateTime);
 		
+		shopXxService.createProductInfo(productInfoBean);
+
+		
+		/**
+		 * 商品情報一覧画面を表示
+		 * @param model
+		 * @return 商品情報一覧画面
+		 */
+		
+		List<ProductInfoBean> productInfo = shopXxService.getProductInfo();
+		model.addAttribute("getProductInfolist",productInfo);
+		
+		System.out.println("234");
+		
+		ModelAndView productInfoList = new ModelAndView("productInfoList");
+		return productInfoList;
 	}
+	
+
 }
