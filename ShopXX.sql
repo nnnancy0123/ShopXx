@@ -1,10 +1,12 @@
 create table shop_product (
-  id character varying(10) not null
+  id serial not null 
   , name character varying(50) not null
+  , simple_desc character varying(300)
   , price integer not null
-  , show_flg character varying(1) not null
-  , del_flg character varying(1) not null
-  , sort integer not null
+  , inventory integer not null
+  , image character varying(300) not null
+  , show_flg character varying(1)
+  , del_flg character varying(1) 
   , date_created timestamp(6) without time zone not null
   , date_modified timestamp(6) without time zone not null
   , primary key (id)
@@ -12,6 +14,6 @@ create table shop_product (
 
 drop table shop_product;
 
-https://medium-company.com/mybatis-spring/#i-7//参照
-https://d2.shopxo.vip/admin.php?s=index/index.html　//ページ参照
-https://github.com/gongfuxiang/shopxo
+select * from shop_product;
+
+insert into shop_product (id,name,simple_desc,price,inventory,image,show_flg,del_flg,date_created,date_modified)values(1,'jin','����',100,20,'C:\image\1.jpg',1,1,'2022/07/16','2022-09-13')
