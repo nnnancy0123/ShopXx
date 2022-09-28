@@ -20,7 +20,6 @@ public class ProductRegistController {
 	ShopXxService shopXxService;
 
 	/*
-	 * 
 	 * @return
 	 * 
 	 */
@@ -39,7 +38,7 @@ public class ProductRegistController {
 	 */
 	@PostMapping("/ProductInfoList")
 	public ModelAndView CreatInfo(@RequestParam int id, @RequestParam String name, @RequestParam int price,
-			@RequestParam String image, @RequestParam int inventory,Model model) {
+			@RequestParam String image, @RequestParam int inventory,Model model,ProFileForm fileForm) {
 
 		ProductInfoBean productInfoBean = new ProductInfoBean();
 		productInfoBean.setId(id);

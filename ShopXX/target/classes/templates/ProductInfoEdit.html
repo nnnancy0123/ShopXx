@@ -1,28 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="UTF-8">
-
-<title>ShopXX</title>
-</head>
 <body>
+	<div class="container">
+		<div th:if="${validationError}" th:each="error : ${validationError}">
+			<label class="text-danger" th:text="${error}"></label>
+		</div>
+		 <h1>商品情報編集</h1>
+	<form th:action="@{/productInfoDetail/{id}}" th:object="${ProductUpdateRequest}"
+			th:method="get"  style="width: 50%; margin: 0 auto; padding: 100px"
+		enctype="multipart/form-deta">
 
-	<span class="am-text-default"
-		style="font-family: sans-serif; color: black; font-size: 20px;">商品添加</span>
-
-	<h1 id="myH1"></h1>
-	<div class="am-panel-hd">
-		<span class="am-text-default"
-			style="font-family: sans-serif; color: black; font-size: 15px;">商品情報入力</span>
-	</div>
-	<br>
-	<form th:action="@{/ProductInfoList}" style="width: 50%; margin: 0 auto; padding: 100px" method="post" enctype="multipart/form-String">
 		<div class="am-form-group">
-			<label>商品番号:</label> <input type="text" name="id" placeholder="商品番号"
-				maxlength="30" data-validation-message="商品番号格式 最大 30 文字"
-				class="am-form-field am-radius" required=""> <span
-				class="am-form-group-label-tips-must"
-				style="font-family: serif; color: red; font-size: 13px;">※必要</span>
+		<div class="col-2 pt-3 border bg-light">
+			商品番号: <input type="text"class="form-control" th:field="*{id}" readonly="readonly"> 
+		</div>
 		</div>
 		<div class="am-form-group">
 
@@ -61,21 +54,26 @@
 		</div>
 
 		<div class="am-form-group am-form-file">
-				<label class="block">商品写真:<br> <span
-					class="am-form-group-label-tips"
-					style="font-family: sans-serif; color: black; font-size: 13px; opacity: 0.6">
-						選択されていない場合は、アルバムの一番目の写真を選択します;800*800pxをお勧めします</span></label>
-				<div class="content-img">
-					<ul class="content-img-list">
-					</ul>
-					<div class="file">
-						<input type="file" style="opacity: 3; color: blue" name="image"
-							accept="image/*" id="upload"> </div>
-							</div>
-		</div>
-		<br>
-
-		<button type="submit">登録</button>
+			<label class="block">商品写真:<br> <span
+				class="am-form-group-label-tips"
+				style="font-family: sans-serif; color: black; font-size: 13px; opacity: 0.6">
+					選択されていない場合は、アルバムの一番目の写真を選択します;800*800pxをお勧めします</span></label>
+			<div class="content-img">
+				<ul class="content-img-list">
+				</ul>
+				<div class="file">
+					<input type="file" style="opacity: 3; color: blue" name="image"
+						accept="image/*" id="upload">
+				</div>
+			</div>
+</form>
+	<form th:action="@{productInfoEdit/{id}}" method="post" style="width: 50%; margin: 0 auto; padding: 100px" 
+		enctype="multipart/form-String">
+		<input type="submit" class="btn btn-secondary" value="保存"> 
+		<button><a href="/ProductInfoList" class="btn btn-secondary">キャンセル</a></button>
 	</form>
+		
+		
+		
 </body>
 </html>

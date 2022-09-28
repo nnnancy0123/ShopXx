@@ -4,14 +4,28 @@
 
 <mapper namespace="com.shop.xx.mapper.ShopXxMapper">
 	<!-- 商品新規登録 -->
-	<insert id="newProductInfo" >
-		insert into shop_product(id,name,simple_desc,price,inventory,image,show_flg,del_flg,date_created,date_modified)
-		values(#{id},#{name}, #{simpleDesc},  #{price}, #{inventory}, #{image},#{showFlg}, #{delFlg}, #{dateCreated},#{dateModified});
+	<insert id="newProductInfo">
+		insert into
+		shop_product(id,name,simple_desc,price,inventory,image,show_flg,del_flg,date_created,date_modified)
+		values(#{id},#{name}, #{simpleDesc}, #{price}, #{inventory},
+		#{image},#{showFlg}, #{delFlg}, #{dateCreated},#{dateModified});
 	</insert>
-	
-	<!-- ユーザー情報一覧取得 -->
-	<select id ="getProductInfo" resultType="com.shop.xx.bean.ProductInfoBean">
-	   select * from shop_product;
+
+	<!-- 商品情報一覧取得 -->
+	<select id="getProductInfo"
+		resultType="com.shop.xx.bean.ProductInfoBean">
+		select * from shop_product;
+	</select>
+
+	<!-- 商品情報一覧ID取得 -->
+	<select id="findById"
+		resultType="com.shop.xx.bean.ProductInfoBean">
+		select * from shop_product where id =#{id} ;
 	</select>
 	
-	</mapper>
+	    <!--  商品情報更新 -->
+    <update id="proInfoUpdate">
+        update shop_product SET  id =#{id},name=#{name}, simple_desc=#{simpleDesc},price = #{price},inventory= #{inventory},
+		image=#{image},show_flg=#{showFlg},delFlg= #{delFlg}, date_created = current_timestamp where id = #{id}
+    </update>
+</mapper>

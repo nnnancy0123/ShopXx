@@ -2,15 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link th:href="@{/css/admin.css}" rel="stylesheet" type="text/css">
 <div class="container">
 	<h1>商品情報一覧</h1>
 	<div class="float-end">
-		<a th:href="@{/ProductRegist}" class="btn btn-primary">新規登録はこちら</a></div>
+		<a th:href="@{/ProductRegist}" class="btn btn-primary">新規登録はこちら</a>
+	</div>
 </div>
+<link th:href="@{/css/admin.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<table class="table table-striped">
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th scope="col">商品番号</th>
@@ -23,17 +26,26 @@
 		</thead>
 
 		<tbody>
-			<tr th:each="productInfo : ${getProductInfolist}">
+			<tr th:if="${productInfo!=null}"
+				th:each="productInfo : ${getProductInfolist}">
 				<td th:text="${productInfo.id}"></td>
 				<td th:text="${productInfo.name}"></td>
 				<td th:text="${productInfo.simpleDesc}"></td>
 				<td th:text="${productInfo.price}"></td>
 				<td th:text="${productInfo.inventory}"></td>
-				<td th:text="${productInfo.image}"></td>
+				<td><img th:src="${productInfo.image}"
+					style="width: 50px; height: 60px;"></td>
+				<td>
+					<button type="button" class="btn btn-primary btn-sm"
+						data-bs-toggle="modal">
+						<a th:href="@{/productInfoDetail/{id}(id=*{productInfo.id})}" class="btn btn-primary">編集</a>
+					</button>
+					<button>削除</button>
+				</td>
 			</tr>
 
 		</tbody>
 	</table>
-</div>
+	</div>
 </body>
 </html>

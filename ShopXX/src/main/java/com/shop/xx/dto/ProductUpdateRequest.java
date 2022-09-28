@@ -1,4 +1,5 @@
 package com.shop.xx.dto;
+
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
@@ -12,14 +13,14 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ProductUpdateRequest extends ProductAddRequest implements Serializable{
+public class ProductUpdateRequest extends ProductAddRequest implements Serializable {
 
+	/**
+	 * ユーザーID
+	 */
+	@NotNull
+	private int id;
 
-	    /**
-	     * ユーザーID
-	     */
-	    @NotNull
-	    private String id;
-	    
-	}
+	
 
+}
