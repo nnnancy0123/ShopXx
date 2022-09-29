@@ -24,13 +24,18 @@ public interface ShopXxMapper {
 	 * 商品情報主キー検索
 	 */
 	public ProductInfoBean findById(int Id);
-	
 
-    /**
-     * 商品情報更新
-     * @param userUpdateRequest 更新用リクエストデータ
-     */
-	public  void proInfoUpdate(ProductUpdateRequest productUpdateRequest);
-    
-    
+	/**
+	 * 商品情報更新
+	 * @param productUpdateRequest 更新用リクエストデータ
+	 */
+	public void proInfoUpdate(ProductInfoBean productInfoBean);
+
+	/**
+	* 商品情報検索
+	* @param product 検索用リクエストデータ
+	* @return 検索結果
+	*/
+	public List<ProductInfoBean> searchProductInfo(ProductUpdateRequest productSearchRequest) ;
+
 }

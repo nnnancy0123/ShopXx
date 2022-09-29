@@ -7,73 +7,74 @@
 		<div th:if="${validationError}" th:each="error : ${validationError}">
 			<label class="text-danger" th:text="${error}"></label>
 		</div>
-		 <h1>商品情報編集</h1>
-	<form th:action="@{/productInfoDetail/{id}}" th:object="${ProductUpdateRequest}"
-			th:method="get"  style="width: 50%; margin: 0 auto; padding: 100px"
-		enctype="multipart/form-deta">
+		<h1>商品情報編集</h1>
+		<form th:action="@{/productInfoUpdate}"
+			th:object="${productUpdateRequest}" th:method="post"
+			style="width: 50%; margin: 0 auto; padding: 100px"
+			enctype="multipart/form-deta">
 
-		<div class="am-form-group">
-		<div class="col-2 pt-3 border bg-light">
-			商品番号: <input type="text"class="form-control" th:field="*{id}" readonly="readonly"> 
-		</div>
-		</div>
-		<div class="am-form-group">
-
-			<div class="am-input-group am-input-group-sm">
-				商品:<input type="text" name="name" placeholder="商品名" minlength="2"
-					maxlength="160" data-validation-message="商品名単位形式 2~160 キャラクター"
-					class="am-form-field am-radius" required=""> <span
-					class="am-form-group-label-tips-must"
-					style="font-family: serif; color: red; font-size: 13px;">※必要</span>
-			</div>
-		</div>
-
-		<div class="am-form-group am-form-success">
-			<label>商品内容:</label> <input type="text" name="simple_desc"
-				placeholder="商品詳細説明" maxlength="300"
-				data-validation-message="商品説明のフォーマット 最大300文字"
-				class="am-radius am-field-valid"> <span
-				class="am-form-group-label-tips"
-				style="font-family: serif; color: black; font-size: 13px;">选填</span>
-		</div>
-
-		<div class="am-form-group am-form-error">
-			<label>価格:</label> <input type="text" name="price"
-				placeholder="00000" class="am-radius am-field-error am-active"
-				required=""> <span class="am-form-group-label-tips-must"
-				style="font-family: serif; color: red; font-size: 13px;">※必要</span>
-		</div>
-
-		<div class="am-form-group am-form-error">
-			<label>在庫:</label> <input type="text" name="inventory"
-				placeholder="000000" minlength="1" maxlength="6"
-				data-validation-message="在庫単位形式1~6 キャラクター"
-				class="am-radius am-field-error am-active" required=""> <span
-				class="am-form-group-label-tips-must"
-				style="font-family: serif; color: red; font-size: 13px;">※必要</span>
-		</div>
-
-		<div class="am-form-group am-form-file">
-			<label class="block">商品写真:<br> <span
-				class="am-form-group-label-tips"
-				style="font-family: sans-serif; color: black; font-size: 13px; opacity: 0.6">
-					選択されていない場合は、アルバムの一番目の写真を選択します;800*800pxをお勧めします</span></label>
-			<div class="content-img">
-				<ul class="content-img-list">
-				</ul>
-				<div class="file">
-					<input type="file" style="opacity: 3; color: blue" name="image"
-						accept="image/*" id="upload">
+			<div class="am-form-group">
+				<div class="col-2 pt-3 border bg-light">
+					商品番号: <input type="hidden" class="form-control"
+						th:field="*{productId}" readonly="readonly">
 				</div>
 			</div>
-</form>
-	<form th:action="@{productInfoEdit/{id}}" method="post" style="width: 50%; margin: 0 auto; padding: 100px" 
-		enctype="multipart/form-String">
-		<input type="submit" class="btn btn-secondary" value="保存"> 
-		<button><a href="/ProductInfoList" class="btn btn-secondary">キャンセル</a></button>
-	</form>
-		
-		
-		
+
+			<div class="am-form-group">
+				<div class="am-input-group am-input-group-sm">
+					商品:<input type="text" name="name" th:field="*{name}" minlength="1"
+						maxlength="160" data-validation-message="商品名単位形式 2~160 キャラクター"
+						class="am-form-field am-radius" required=""> <span
+						class="am-form-group-label-tips-must"
+						style="font-family: serif; color: red; font-size: 13px;">※必要</span>
+				</div>
+			</div>
+
+			<div class="am-form-group">
+				<div class="am-input-group am-input-group-sm">
+					商品内容:<input type="text" th:field="*{simpleDesc}" maxlength="300"
+						data-validation-message="商品説明のフォーマット 最大300文字"
+						class="am-form-field am-radius" required="">
+				</div>
+
+				<div class="am-form-group am-form-error">
+					価格:<input type="text" th:field="*{price}" placeholder="00000"
+						class="am-radius am-field-error am-active" required=""> <span
+						class="am-form-group-label-tips-must"
+						style="font-family: serif; color: red; font-size: 13px;">※必要</span>
+				</div>
+
+				<div class="am-form-group am-form-error">
+					在庫:<input type="text" th:field="*{inventory}" placeholder="000000"
+						minlength="1" maxlength="6"
+						data-validation-message="在庫単位形式1~6 キャラクター"
+						class="am-radius am-field-error am-active" required=""> <span
+						class="am-form-group-label-tips-must"
+						style="font-family: serif; color: red; font-size: 13px;">※必要</span>
+				</div>
+
+				<div class="am-form-group am-form-file">
+					<label class="block">商品写真:<br> <span
+						class="am-form-group-label-tips"
+						style="font-family: sans-serif; color: black; font-size: 13px; opacity: 0.6">
+							選択されていない場合は、アルバムの一番目の写真を選択します;800*800pxをお勧めします</span></label>
+					<div class="content-img">
+						<ul class="content-img-list">
+						</ul>
+						<div class="file">
+							<input type="file" style="opacity: 3; color: blue" name="image"
+								accept="image/*" id="upload">
+						</div>
+					</div>
+				</div>
+				<br> <a th:href="@{/productInfoList}" method="post"
+					style="width: 50%; margin: 0 auto; padding: 100px"
+					enctype="multipart/form-String"></a> <input type="submit"
+					class="btn btn-secondary" value="保存">
+
+				<button type="button">
+					<a th:href="@{/productInfoList}" class="btn btn-primary">戻る</a>
+				</button>
+		</form>
 </body>
 </html>

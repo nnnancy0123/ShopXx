@@ -14,20 +14,42 @@ import org.springframework.web.servlet.ModelAndView;
 import com.shop.xx.bean.ProductInfoBean;
 import com.shop.xx.service.ShopXxService;
 
+/**
+ * 
+ * @author user
+ *
+ */
 @Controller
 public class ProductRegistController {
+
 	@Autowired
 	ShopXxService shopXxService;
 
-	/*
+	/**
 	 * @return
 	 * 
 	 */
-	@GetMapping("/ProductRegist")
+	@GetMapping("/productRegist")
 	public ModelAndView register() {
-
-		ModelAndView mav = new ModelAndView("ProductRegist");
+		ModelAndView mav = new ModelAndView("productRegist");
 		return mav;
+	}
+
+	/**
+	 * 商品情報一覧画面を表示
+	 * @param model
+	 * @return 商品情報一覧画面
+	 */
+	@GetMapping("/productInfoList")
+	public ModelAndView productInfoList(Model model) {
+
+		ModelAndView mav = new ModelAndView("productInfoList");
+
+		List<ProductInfoBean> productInfo = shopXxService.getProductInfo();
+		model.addAttribute("getProductInfolist", productInfo);
+
+		return mav;
+
 	}
 
 	/**
@@ -36,9 +58,9 @@ public class ProductRegistController {
 	 * @param inventory 
 	 * @return 商品情報一覧画面
 	 */
-	@PostMapping("/ProductInfoList")
-	public ModelAndView CreatInfo(@RequestParam int id, @RequestParam String name, @RequestParam int price,
-			@RequestParam String image, @RequestParam int inventory,Model model,ProFileForm fileForm) {
+	@PostMapping("/productInfoList")
+	public String CreatProductInfo(@RequestParam int id, @RequestParam String name, @RequestParam int price,
+			 @RequestParam String image, @RequestParam int inventory, Model model, ProFileForm fileForm) {
 
 		ProductInfoBean productInfoBean = new ProductInfoBean();
 		productInfoBean.setId(id);
@@ -49,24 +71,9 @@ public class ProductRegistController {
 		LocalDateTime localDateTime = LocalDateTime.now();
 		productInfoBean.setDateCreated(localDateTime);
 		productInfoBean.setDateModified(localDateTime);
-		
-		shopXxService.createProductInfo(productInfoBean);
 
-		
-		/**
-		 * 商品情報一覧画面を表示
-		 * @param model
-		 * @return 商品情報一覧画面
-		 */
-		
-		List<ProductInfoBean> productInfo = shopXxService.getProductInfo();
-		model.addAttribute("getProductInfolist",productInfo);
-		
-		System.out.println("234");
-		
-		ModelAndView productInfoList = new ModelAndView("productInfoList");
-		return productInfoList;
+		shopXxService.createProductInfo(productInfoBean);
+		 return "redirect:/productInfoList";
 	}
-	
 
 }

@@ -19,8 +19,8 @@ public class ShopXxService {
 	 * 商品情報登録
      * 
      */
-	public void createProductInfo(ProductInfoBean ProductInfoBean) {
-		shopXxMapper.newProductInfo(ProductInfoBean);
+	public void createProductInfo(ProductInfoBean productInfoBean) {
+		shopXxMapper.newProductInfo(productInfoBean);
 	}
 
 	/**
@@ -40,11 +40,33 @@ public class ShopXxService {
 		 
 	 }
 	 
+	 
 	    /**
 	     * 商品情報更新
-	     * @param userUpdateRequest 更新用リクエストデータ
+	     * @param productUpdateRequest 更新用リクエストデータ
 	     */
 	 public  void proInfoUpdate(ProductUpdateRequest productUpdateRequest) {
-		 shopXxMapper.proInfoUpdate(productUpdateRequest);
+		 
+		 ProductInfoBean productInfoBean = new ProductInfoBean();
+		 productInfoBean.setId(productUpdateRequest.getProductId());
+		 productInfoBean.setName(productUpdateRequest.getName());
+		 productInfoBean.setSimpleDesc(productUpdateRequest.getSimpleDesc());
+		 productInfoBean.setPrice(productUpdateRequest.getPrice());
+		 productInfoBean.setInventory(productUpdateRequest.getInventory());
+		 productInfoBean.setImage(productUpdateRequest.getImage());
+		 productInfoBean.setDateCreated(productUpdateRequest.getDateCreated());
+		 productInfoBean.setDateModified(productUpdateRequest.getDateModified());
+		 shopXxMapper.proInfoUpdate(productInfoBean);
+		 
 	 }
+	 
+	    /**
+	     * 商品情報検索
+	     * @param userSearchRequest リクエストデータ
+	     * @return 検索結果
+	     */
+	 public List<ProductInfoBean> searchProductInfo(ProductUpdateRequest productSearchRequest) {
+		  return shopXxMapper.searchProductInfo(productSearchRequest);
+	 }
+	    
 }
