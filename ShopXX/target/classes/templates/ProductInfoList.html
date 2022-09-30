@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<form style="width: 50%; margin: 0 auto; padding: 100px"
+	<form th:action="@{/productInfoSearch}" th:object="${productSearchRequest}" th:method="post"style="width: 50%; margin: 0 auto; padding: 100px"
 		enctype="multipart/form-String">
 		<div class="form-group">
 			<label for="id">商品番号：</label> <input type="text"> <br>
@@ -22,7 +22,8 @@
 		</div>
 		<br />
 		<button type="submit" class="btn btn-primary">検索</button>
-	<br />
+	    <br />
+	    	</form>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -58,6 +59,6 @@
 			</tbody>
 		</table>
 		</div>
-	</form>
+
 </body>
 </html>

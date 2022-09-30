@@ -20,7 +20,7 @@
 	<!-- 商品情報一覧ID取得 -->
 	<select id="findById"
 		resultType="com.shop.xx.bean.ProductInfoBean">
-		select * from shop_product where id =#{id} ;
+		select * from shop_product where id =#{id} order by id asc;
 	</select>
 	
 	    <!--  商品情報更新 -->
