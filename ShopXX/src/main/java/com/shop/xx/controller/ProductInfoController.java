@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shop.xx.bean.ProductInfoBean;
+import com.shop.xx.dto.ProductSearchRequest;
 import com.shop.xx.dto.ProductUpdateRequest;
 import com.shop.xx.service.ShopXxService;
 
@@ -25,7 +26,7 @@ public class ProductInfoController {
 
 	@Autowired
 	ShopXxService shopXxService;
-
+	
 	/**
 	 * 商品詳細画面を表示
 	 * @param 商品ID
@@ -45,46 +46,46 @@ public class ProductInfoController {
 		productUpdateRequest.setImage(product.getImage());
 		productUpdateRequest.setDateCreated(product.getDateCreated());
 		productUpdateRequest.setDateModified(product.getDateModified());
-
+		
 		model.addAttribute("productUpdateRequest", productUpdateRequest);
 		ModelAndView mav = new ModelAndView("productInfoEdit");
 		return mav;
 
 	}
-
-	/**
-	 * 商品更新
-	 * @param productUpdateRequest リクエストデータ
-	 * @param model Model
-	 * @return 商品詳細情報画面
-	 */
-	@RequestMapping(value = "/productInfoUpdate", method = RequestMethod.POST)
-	public String update(@Validated @ModelAttribute ProductUpdateRequest productUpdateRequest, BindingResult result,
-			Model model) {
-		if (result.hasErrors()) {
-			List<String> errorList = new ArrayList<String>();
-			for (ObjectError error : result.getAllErrors()) {
-				errorList.add(error.getDefaultMessage());
-			}
-			model.addAttribute("validationError", errorList);
-			return "redirect:/productInfoDetail/{id}";
-		}
-
-		// ユーザー情報の更新
-		shopXxService.proInfoUpdate(productUpdateRequest);
-		return "redirect:/productInfoList";
-	}
-
-	/**
-	 * 商品情報検索
-	 * @param userSearchRequest リクエストデータ
-	 * @param model Model
-	 * @return 商品情報一覧画面
-	 */
-	@RequestMapping(value = "/productInfoSearch", method = RequestMethod.POST)
-	public String ProductInfoSearch(@ModelAttribute ProductUpdateRequest productSearchRequest, Model model) {
-		List<ProductInfoBean> productInfoSearchList = shopXxService.searchProductInfo(productSearchRequest);
-		model.addAttribute("productInfoSearchList", productInfoSearchList);
-		return "redirect:/productInfoList";
-	}
+	
+    /**
+     * 商品更新
+     * @param productUpdateRequest リクエストデータ
+     * @param model Model
+     * @return 商品詳細情報画面
+     */
+    @RequestMapping(value = "/productInfoUpdate", method = RequestMethod.POST)
+    public String update(@Validated @ModelAttribute ProductUpdateRequest productUpdateRequest, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            List<String> errorList = new ArrayList<String>();
+            for (ObjectError error : result.getAllErrors()) {
+                errorList.add(error.getDefaultMessage());
+            }
+            model.addAttribute("validationError", errorList);
+            return "redirect:/productInfoEdit";
+        }
+        
+        // ユーザー情報の更新
+        shopXxService.proInfoUpdate(productUpdateRequest);
+        return "redirect:/productInfoList";
+    }
+	
+    /**
+     * 商品名検索
+     * @param productSearchRequest リクエストデータ
+     * @param model Model
+     * @return 商品情報一覧画面
+     */
+    @RequestMapping(value = "/productInfoSearch", method = RequestMethod.POST)
+    public String productInfoSearch(@ModelAttribute ProductSearchRequest productSearchRequest, Model model) {
+        List<ProductInfoBean> productInfoSearchList = shopXxService.searchProductInfo(productSearchRequest);
+        model.addAttribute("getProductInfoSearchList", productInfoSearchList);
+        return "redirect:/ProductInfoSearch";
+    }
+    
 }

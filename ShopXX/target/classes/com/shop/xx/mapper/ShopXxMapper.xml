@@ -20,19 +20,24 @@
 	<!-- 商品情報一覧ID取得 -->
 	<select id="findById"
 		resultType="com.shop.xx.bean.ProductInfoBean">
-		select * from shop_product where id =#{id} order by id asc;
+		select * from shop_product where id =#{id} ;
 	</select>
-	
-	    <!--  商品情報更新 -->
-    <update id="proInfoUpdate">
-        update shop_product SET  id =#{id},name=#{name}, simple_desc=#{simpleDesc},price = #{price},inventory= #{inventory},
-		image=#{image},show_flg=#{showFlg},del_Flg= #{delFlg}, date_created = current_timestamp where id = #{id}
-    </update>
-    
-        <!-- 条件指定検索 -->
-    <select id="searchProductInfo" resultType="com.shop.xx.bean.ProductInfoBean">
-        select * from shop_product where <if test="id !=null anf id != ''"> and id = #{id}</if>
-        <if test="name != null and name != ''"> and name like concat('%', #{name}, '%')
-            </if>
-    </select>
+
+	<!-- 商品情報更新 -->
+	<update id="proInfoUpdate">
+		update shop_product SET id =#{id},name=#{name},
+		simple_desc=#{simpleDesc},price = #{price},inventory= #{inventory},
+		image=#{image},show_flg=#{showFlg},del_Flg= #{delFlg}, date_created =
+		current_timestamp where id = #{id}
+	</update>
+
+	<!-- 条件指定検索 -->
+	<select id="searchProductInfo"
+		resultType="com.shop.xx.bean.ProductInfoBean">
+        select * from shop_product  where 
+            <if test="name != null and name != ''">
+            name like concat("%',#{name},'%')
+       </if>   
+
+	</select>
 </mapper>

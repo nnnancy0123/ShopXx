@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.xx.bean.ProductInfoBean;
+import com.shop.xx.dto.ProductSearchRequest;
 import com.shop.xx.dto.ProductUpdateRequest;
 import com.shop.xx.mapper.ShopXxMapper;
 
@@ -62,10 +63,20 @@ public class ShopXxService {
 	 
 	    /**
 	     * 商品情報検索
-	     * @param userSearchRequest リクエストデータ
+	     * @param userSearchRequest 検索用リクエストデータ
 	     * @return 検索結果
 	     */
-	 public List<ProductInfoBean> searchProductInfo(ProductUpdateRequest productSearchRequest) {
+	 public List<ProductInfoBean> searchProductInfo(ProductSearchRequest productSearchRequest) {
+		 
+		 ProductInfoBean productInfoBean = new ProductInfoBean();
+		 productInfoBean.setId(productSearchRequest.getProductId());
+		 productInfoBean.setName(productSearchRequest.getName());
+		 productInfoBean.setSimpleDesc(productSearchRequest.getSimpleDesc());
+		 productInfoBean.setPrice(productSearchRequest.getPrice());
+		 productInfoBean.setInventory(productSearchRequest.getInventory());
+		 productInfoBean.setImage(productSearchRequest.getImage());
+		 productInfoBean.setDateCreated(productSearchRequest.getDateCreated());
+		 productInfoBean.setDateModified(productSearchRequest.getDateModified());
 		  return shopXxMapper.searchProductInfo(productSearchRequest);
 	 }
 	    

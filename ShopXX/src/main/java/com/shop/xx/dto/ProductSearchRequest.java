@@ -5,21 +5,12 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
-/**
- * ユーザー情報更新リクエストデータ
- *
- */
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Setter
 @Getter
-public class ProductUpdateRequest implements Serializable {
 
+public class ProductSearchRequest implements Serializable  {
 	/**
 	 * 商品番号
 	 */
@@ -43,7 +34,7 @@ public class ProductUpdateRequest implements Serializable {
      */
 	private int inventory;
 	/**
-     * いめーじ
+     * イメージ
      */
 	private String image;
 	/**
@@ -65,4 +56,5 @@ public class ProductUpdateRequest implements Serializable {
 
 	
 
+	    
 }

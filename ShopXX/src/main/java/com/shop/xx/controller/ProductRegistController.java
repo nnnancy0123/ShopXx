@@ -47,7 +47,6 @@ public class ProductRegistController {
 
 		List<ProductInfoBean> productInfo = shopXxService.getProductInfo();
 		model.addAttribute("getProductInfolist", productInfo);
-
 		return mav;
 
 	}
@@ -60,7 +59,7 @@ public class ProductRegistController {
 	 */
 	@PostMapping("/productInfoList")
 	public String CreatProductInfo(@RequestParam int id, @RequestParam String name, @RequestParam int price,
-			 @RequestParam String image, @RequestParam int inventory, Model model, ProFileForm fileForm) {
+			 @RequestParam String image, @RequestParam int inventory, Model model) {
 
 		ProductInfoBean productInfoBean = new ProductInfoBean();
 		productInfoBean.setId(id);

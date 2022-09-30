@@ -13,52 +13,55 @@
 </head>
 <body>
 
-	<form th:action="@{/productInfoSearch}" th:object="${productSearchRequest}" th:method="post"style="width: 50%; margin: 0 auto; padding: 100px"
-		enctype="multipart/form-String">
+	<!-- 商品名から商品情報検索 -->
+
+	<form th:action="@{/productInfoSearch}" th:object="${productSearchRequest}" th:method="post"
+		style="width: 50%; margin: 0 auto; padding: 100px" enctype="multipart/form-String">
 		<div class="form-group">
-			<label for="id">商品番号：</label> <input type="text"> <br>
-			<label for="name">商品名：</label> <input type="text"
-				class="w-50 form-control">
-		</div>
+			<br> <label for="name">商品名：</label> <input type="text"
+				class="w-50 form-control"></div>
 		<br />
 		<button type="submit" class="btn btn-primary">検索</button>
-	    <br />
-	    	</form>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th scope="col">商品番号</th>
-					<th scope="col">商品</th>
-					<th scope="col">商品内容</th>
-					<th scope="col">価格</th>
-					<th scope="col">在庫</th>
-					<th scope="col">商品写真</th>
-				</tr>
-			</thead>
+		<br />
+	</form>
 
-			<tbody>
-				<tr th:if="${productInfo!=null}"
-					th:each="productInfo : ${getProductInfolist}">
-					<td th:text="${productInfo.id}"></td>
-					<td th:text="${productInfo.name}"></td>
-					<td th:text="${productInfo.simpleDesc}"></td>
-					<td th:text="${productInfo.price}"></td>
-					<td th:text="${productInfo.inventory}"></td>
-					<td><img th:src="${productInfo.image}"
-						style="width: 50px; height: 60px;"></td>
-					<td>
-						<button type="button" class="btn btn-primary btn-sm"
-							data-bs-toggle="modal">
-							<a th:href="@{/productInfoDetail/{id}(id=*{productInfo.id})}"
-								class="btn btn-primary">編集</a>
-						</button>
-						<button>削除</button>
-					</td>
-				</tr>
 
-			</tbody>
-		</table>
-		</div>
+	<!-- 商品情報一覧 -->
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">商品番号</th>
+				<th scope="col">商品</th>
+				<th scope="col">商品内容</th>
+				<th scope="col">価格</th>
+				<th scope="col">在庫</th>
+				<th scope="col">商品写真</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:if="${productInfo!=null}"
+				th:each="productInfo : ${getProductInfolist}">
+				<td th:text="${productInfo.id}"></td>
+				<td th:text="${productInfo.name}"></td>
+				<td th:text="${productInfo.simpleDesc}"></td>
+				<td th:text="${productInfo.price}"></td>
+				<td th:text="${productInfo.inventory}"></td>
+				<td><img th:src="${productInfo.image}"
+					style="width: 50px; height: 60px;"></td>
+				<td>
+					<button type="button" class="btn btn-primary btn-sm"
+						data-bs-toggle="modal">
+						<a th:href="@{/productInfoDetail/{id}(id=*{productInfo.id})}"
+							class="btn btn-primary">編集 </a>
+					</button>
+					<button>削除</button>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+
 
 </body>
 </html>
