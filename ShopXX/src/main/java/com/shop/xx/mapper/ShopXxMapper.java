@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.xx.bean.ProductInfoBean;
-import com.shop.xx.dto.ProductSearchRequest;
 
 @Mapper
 public interface ShopXxMapper {
@@ -36,6 +35,6 @@ public interface ShopXxMapper {
 	* @param product 検索用リクエストデータ
 	* @return 検索結果
 	*/
-	public List<ProductInfoBean> searchProductInfo(ProductSearchRequest productSearchRequest) ;
+	public List<ProductInfoBean> searchProductInfo(String name) ;
 
 }

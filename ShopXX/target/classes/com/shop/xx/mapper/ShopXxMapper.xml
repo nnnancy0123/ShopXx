@@ -14,7 +14,7 @@
 	<!-- 商品情報一覧取得 -->
 	<select id="getProductInfo"
 		resultType="com.shop.xx.bean.ProductInfoBean">
-		select * from shop_product;
+		select * from shop_product order by id asc;
 	</select>
 
 	<!-- 商品情報一覧ID取得 -->
@@ -34,9 +34,9 @@
 	<!-- 条件指定検索 -->
 	<select id="searchProductInfo"
 		resultType="com.shop.xx.bean.ProductInfoBean">
-        select * from shop_product  where 
+        select * from shop_product  where 1 = 1
             <if test="name != null and name != ''">
-            name like concat("%',#{name},'%')
+            and name like concat('%',#{name},'%')
        </if>   
 
 	</select>

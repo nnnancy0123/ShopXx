@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shop.xx.bean.ProductInfoBean;
-import com.shop.xx.dto.ProductSearchRequest;
 import com.shop.xx.dto.ProductUpdateRequest;
 import com.shop.xx.service.ShopXxService;
 
@@ -81,11 +80,11 @@ public class ProductInfoController {
      * @param model Model
      * @return 商品情報一覧画面
      */
-    @RequestMapping(value = "/productInfoSearch", method = RequestMethod.POST)
-    public String productInfoSearch(@ModelAttribute ProductSearchRequest productSearchRequest, Model model) {
-        List<ProductInfoBean> productInfoSearchList = shopXxService.searchProductInfo(productSearchRequest);
-        model.addAttribute("getProductInfoSearchList", productInfoSearchList);
-        return "redirect:/ProductInfoSearch";
-    }
+//    @RequestMapping(value = "/productInfoSearch", method = RequestMethod.POST)
+//    public String productInfoSearch(@ModelAttribute ProductSearchRequest productSearchRequest, Model model) {
+//        List<ProductInfoBean> productInfoSearchList = shopXxService.searchProductInfo(productSearchRequest);
+//        model.addAttribute("getProductInfoSearchList", productInfoSearchList);
+//        return "redirect:/ProductInfoSearch";
+//    }
     
 }
