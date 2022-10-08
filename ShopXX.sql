@@ -14,7 +14,7 @@ create table shop_product (
 
 drop table shop_product;
 
-select * from shop_product;
+select * from shop_product order by id asc;
 
 insert into shop_product (id,name,simple_desc,price,inventory,image,show_flg,del_flg,date_created,date_modified)values(1,'jin','‰Âˆ¤‚¢',100,20,'C:\image\1.jpg',1,1,'2022/07/16','2022-09-13')
 
