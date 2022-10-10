@@ -23,7 +23,7 @@ public class ShopXxServiceTest {
 	@Test
 	void testCase001() {
 
-		List<ProductInfoBean> list = shopXxService.searchProductInfo("フルーツティー");
+		List<ProductInfoBean> list = shopXxService.searchProductInfo("黒糖ミルク");
 
 		assertTrue(1 == list.size());
 	}
@@ -31,7 +31,7 @@ public class ShopXxServiceTest {
 	/**
 	* 商品情報主キー検索
 	*/
-	@SuppressWarnings("unlikely-arg-type")
+
 	@Test
 	void testFindById() {
 
@@ -50,6 +50,7 @@ public class ShopXxServiceTest {
 		List<ProductInfoBean> getProductInfo = shopXxService.getProductInfo();
 		assertTrue(11 == getProductInfo.size());
 	}
+	
 	/**
 	*  商品情報取得
 	*/

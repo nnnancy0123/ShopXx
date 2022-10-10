@@ -35,6 +35,6 @@ public interface ShopXxMapper {
 	* @param product 検索用リクエストデータ
 	* @return 検索結果
 	*/
-	public List<ProductInfoBean> searchProductInfo(String name) ;
+	public List<ProductInfoBean> searchProductInfo(String productNm) ;
 
 }

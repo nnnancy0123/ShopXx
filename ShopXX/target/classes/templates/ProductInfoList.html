@@ -15,11 +15,10 @@
 
 	<!-- 商品名から商品情報検索 -->
 
-	<form th:action="@{/productInfoSearch}" th:object="${productSearchRequest}" th:method="post"
+	<form th:action="@{/productInfoList}"  th:method="get"
 		style="width: 50%; margin: 0 auto; padding: 100px" enctype="multipart/form-String">
 		<div class="form-group">
-			<br> <label for="name">商品名：</label> <input type="text"
-				class="w-50 form-control"></div>
+			<br> <label for="name">商品名：</label> <input type="text" class="w-50 form-control" name="productNm"></div>
 		<br />
 		<button type="submit" class="btn btn-primary">検索</button>
 		<br />

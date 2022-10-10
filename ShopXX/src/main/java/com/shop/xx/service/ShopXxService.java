@@ -62,11 +62,10 @@ public class ShopXxService {
 	 
 	    /**
 	     * 商品情報検索
-	     * @param userSearchRequest 検索用リクエストデータ
+	     * @param productNm
 	     * @return 検索結果
 	     */
 	 public List<ProductInfoBean> searchProductInfo(String productNm) {
-		 
 		
 		  return shopXxMapper.searchProductInfo(productNm);
 	 }

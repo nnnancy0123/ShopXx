@@ -34,10 +34,9 @@
 	<!-- 条件指定検索 -->
 	<select id="searchProductInfo"
 		resultType="com.shop.xx.bean.ProductInfoBean">
-        select * from shop_product  where 1 = 1
-            <if test="name != null and name != ''">
-            and name like concat('%',#{name},'%')
-       </if>   
-
+		select * from shop_product where 1 = 1
+		<if test="name != null and name != ''">
+			and name like concat('%',#{name},'%')
+		</if>
 	</select>
 </mapper>

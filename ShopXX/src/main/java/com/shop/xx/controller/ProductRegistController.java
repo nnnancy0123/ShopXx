@@ -41,15 +41,17 @@ public class ProductRegistController {
 	 * @return 商品情報一覧画面
 	 */
 	@GetMapping("/productInfoList")
-	public ModelAndView productInfoList(Model model) {
+	public ModelAndView productInfoList(@RequestParam(name = "productNm", required = false) String productNm,Model model) {
 
 		ModelAndView mav = new ModelAndView("productInfoList");
 
-		List<ProductInfoBean> productInfo = shopXxService.getProductInfo();
+		List<ProductInfoBean> productInfo =  shopXxService.searchProductInfo(productNm);
 		model.addAttribute("getProductInfolist", productInfo);
 		return mav;
 
 	}
+	
+
 
 	/**
 	 * 商品新規登録画面を表示
