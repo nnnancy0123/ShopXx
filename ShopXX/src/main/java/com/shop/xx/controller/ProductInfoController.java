@@ -74,23 +74,5 @@ public class ProductInfoController {
         return "redirect:/productInfoList";
     }
 	
-    /**
-     * 商品名検索
-     * @param productSearchRequest リクエストデータ
-     * @param model Model
-     * @return 商品情報一覧画面
-     */
-//    @RequestMapping(value = "/productInfoSearch", method = RequestMethod.POST)
-//    public String productInfoSearch(@PathVariable @ModelAttribute String productNm, Model model) {
-//    	
-//       List<ProductInfoBean> productInfoSearchList = shopXxService.searchProductInfo(productNm);
-//       
-//       ProductSearchRequest productSearchRequest = new ProductSearchRequest();
-//       productSearchRequest.setProductNm(productNm);
-//       
-//        model.addAttribute("getProductInfoSearchList", productInfoSearchList);
-//        
-//        return "redirect:/ProductInfoSearch";
-//    }
     
 }
