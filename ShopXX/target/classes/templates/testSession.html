@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<title>ShopXX</title>
+</head>
+<body>
+
+	<span class="am-text-default"
+		style="font-family: sans-serif; color: black; font-size: 20px;">商品添加</span>
+	<br>
+
+
+	<h1 id="myH1"></h1>
+	<div class="am-panel-hd">
+		<span class="am-text-default"
+			style="font-family: sans-serif; color: black; font-size: 15px;">商品情報入力</span>
+	</div>
+	<br>
+
+	<form th:action="@{/testSessionReg}"
+		style="width: 50%; margin: 0 auto; padding: 100px" method="post"
+		enctype="multipart/form-String">
+		<div>
+			<label for="name">ユーザーネーム：</label> <input type="text"
+				class="w-50 form-control" name="userName">
+		</div>
+		<div>
+			<label for="name">ユーザーパスワード：</label> <input type="text"
+				class="w-50 form-control" name="userPassword">
+		</div>
+		<div>
+			<label for="name">ユーザータイプ：</label> <input type="text"
+				class="w-50 form-control" name="userType">
+		</div>
+		<br>
+		<button type="submit">登録</button>
+	</form>
+</body>
+</html>

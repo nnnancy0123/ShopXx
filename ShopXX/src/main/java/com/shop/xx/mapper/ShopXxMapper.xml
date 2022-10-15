@@ -10,6 +10,14 @@
 		values(#{id},#{name}, #{simpleDesc}, #{price}, #{inventory},
 		#{image},#{showFlg}, #{delFlg}, #{dateCreated},#{dateModified});
 	</insert>
+	
+		<!-- ユーザー新規登録 -->
+	<insert id="newUserInfo">
+		insert into
+		shop_user(user_name,user_password,user_type)
+		values(#{userName},#{userPassword}, #{userType});
+	</insert>
+
 
 	<!-- 商品情報一覧取得 -->
 	<select id="getProductInfo"

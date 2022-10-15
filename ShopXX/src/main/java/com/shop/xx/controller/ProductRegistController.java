@@ -41,12 +41,13 @@ public class ProductRegistController {
 	 * @return 商品情報一覧画面
 	 */
 	@GetMapping("/productInfoList")
-	public ModelAndView productInfoList(@RequestParam(name = "productNm", required = false) String productNm,Model model) {
+	public ModelAndView productInfoList(@RequestParam(name = "productNm", required = false) String productNm, Model model) {
 
 		ModelAndView mav = new ModelAndView("productInfoList");
-
-		List<ProductInfoBean> productInfo =  shopXxService.searchProductInfo(productNm);
+		
+		List<ProductInfoBean> productInfo = shopXxService.searchProductInfo(productNm);
 		model.addAttribute("getProductInfolist", productInfo);
+		
 		return mav;
 
 	}
@@ -75,6 +76,7 @@ public class ProductRegistController {
 
 		shopXxService.createProductInfo(productInfoBean);
 		 return "redirect:/productInfoList";
+		 
 	}
 
 }
