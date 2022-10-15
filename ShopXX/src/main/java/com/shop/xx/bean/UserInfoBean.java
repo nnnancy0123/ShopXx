@@ -1,11 +1,13 @@
 package com.shop.xx.bean;
 
-import lombok.Data;
+import javax.validation.constraints.NotBlank;
 
+import lombok.Data;
 
 @Data
 public class UserInfoBean {
-	
+
+	@NotBlank
 	private String userName;
 
 	private int userPassword;

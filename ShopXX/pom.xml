@@ -71,6 +71,22 @@
 					<artifactId>spring-boot-starter-test</artifactId>
 					<scope>test</scope>
 				</dependency>
+				<!-- validation-api(入力値検証で使用) -->
+				<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+				<dependency>
+					<groupId>javax.validation</groupId>
+					<artifactId>validation-api</artifactId>
+					<version>2.0.1.Final</version>
+				</dependency>
+
+				<!-- Hibernate(入力値検証で使用) -->
+				<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+				<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-validator</artifactId>
+					<version>7.0.5.Final</version>
+				</dependency>
+
 				<dependency>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-validation</artifactId>

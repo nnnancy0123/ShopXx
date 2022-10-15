@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 
 <title>ShopXX</title>
 </head>
 <body>
-
+<table>
+        <tr th:if="${validationError}" th:each="error : ${validationError}">
+            <td style="color: red;" th:text="${error}"></td>
+        </tr>
+    </table>
 	<span class="am-text-default"
 		style="font-family: sans-serif; color: black; font-size: 20px;">商品添加</span>
 	<br>
@@ -19,20 +24,20 @@
 	</div>
 	<br>
 
-	<form th:action="@{/testSessionReg}"
+	<form th:action="@{/testSessionReg}" th:object="${userInfoDto}"
 		style="width: 50%; margin: 0 auto; padding: 100px" method="post"
 		enctype="multipart/form-String">
 		<div>
 			<label for="name">ユーザーネーム：</label> <input type="text"
-				class="w-50 form-control" name="userName">
+				class="w-50 form-control"  th:field="*{userName}">
 		</div>
 		<div>
 			<label for="name">ユーザーパスワード：</label> <input type="text"
-				class="w-50 form-control" name="userPassword">
+				class="w-50 form-control" th:field="*{userPassword}">
 		</div>
 		<div>
 			<label for="name">ユーザータイプ：</label> <input type="text"
-				class="w-50 form-control" name="userType">
+				class="w-50 form-control" th:field="*{userType}">
 		</div>
 		<br>
 		<button type="submit">登録</button>
